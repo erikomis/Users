@@ -1,0 +1,89 @@
+<h3>tela de usuario </h3>
+<div class="container-men">
+    <div class="container">
+      <form  #formValidate="ngForm">
+        <div class="mb-1">
+          <label for="id" class="form-label">id</label>
+          <input type="text" class="form-control" id="id" [(ngModel)]="user.id" name="id" readonly="true" autocomplete="false">
+        </div>
+        <div class="mb-3">
+            <label for="nome" class="form-label">Nome</label>
+            <input type="text" class="form-control" id="nome" [(ngModel)]="user.nome"  required="true" name="nome" aria-describedby="emailHelp">
+            <div class="alert-danger" *ngIf="user.nome == null">
+              Nome deve  ser informado
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="login" class="form-label">Login</label>
+            <input type="text" class="form-control" id="login" [(ngModel)]="user.login" name="login" aria-describedby="emailHelp" required="true">
+            <div class="alert-danger"  *ngIf="user.login == null">
+              Login deve ser informado
+            </div>
+          </div>
+        <div class="mb-3">
+          <label for="senha" class="form-label">Password</label>
+        <input type="password"  class="form-control" id="senha"  [(ngModel)]="user.senha" name="senha" required="true">
+          <div class="alert-danger" *ngIf="user.senha == null">
+            Senha deve ser informado 0u senha menor que 3  caracteres 
+          </div>
+        </div>
+        <div class="mb-3">
+            <label for="cpf"  class="form-label">Cpf</label>
+            <input  type="text" mask="000.000.000-00" class="form-control" id="cpf" name="cpf"  [(ngModel)]="user.cpf" required="true">
+            <div  class="alert-danger" *ngIf="user.cpf == null">
+              Cpf deve ser informado  
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="cpf" class="form-label">Cep</label>
+            <input  type="text" mask="00000-000" class="form-control" id="cep" name="cep"  [(ngModel)]="user.cep" required="true">
+            <div  class="alert-danger" *ngIf="user.cep == null">
+              Cep deve ser informado  
+            </div>
+        </div>
+
+
+        <div class="card text-center">
+          <div class="card-header">
+            <h5>telefone</h5>
+          </div>
+          <div class="card-body">
+
+            <div class="row">
+              <div class="form-group col-md-3">
+                <input type="text" class="form-control" id="numero" mask="(00) 0 0000-0000" name="numero" [(ngModel)]="telefone.numero">
+              </div>
+              <div class="form-group col-md-2">
+                <button class="btn btn-primary"(click)="addFone()">Adicioner</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <table class="table">
+          <thead class="thread-dark">
+            <tr>
+              <th scope="col">telefone</th>
+              <th scope="col">Deletar</th>
+              <th scope="col">Editar</th>
+            </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let fone of user.telefones; let i =index">
+                  <td scope="row">{{  fone.numero | mask: '(00) 0 0000-0000' }}</td>
+                  <td><button class="btn btn-danger" (click)="deletarTelefone(fone.id,i)">Deletar</button></td>
+                  <td><button class="btn btn-warning" [routerLink]="['/usuarioAdd',user.id]" >Editar</button></td>
+              </tr>
+          </tbody>
+      </table>
+
+
+        <div class="form-row">
+            <div>
+                <button class="btn btn-primary button" type="button" [routerLink]="['/listarUsers']" routerLinkActive="router-link-active"  >Voltar</button>
+                <button type="button"  class="btn btn-primary button" (click)="novo()">Novo</button>
+                <button type="button"  class="btn btn-primary button"   [disabled]="formValidate.invalid" (click)="salvarUser()">Salvar</button>
+            </div>
+        </div>
+      </form>
+    </div>  
+</div> 

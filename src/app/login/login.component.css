@@ -1,0 +1,19 @@
+.container-men{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(red, blue);
+}
+
+.container{
+    width: 400px;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid;
+    background: #eee
+
+}
